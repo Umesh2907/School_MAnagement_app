@@ -1,0 +1,32 @@
+  <h1>Students list</h1>
+
+  <%# <%= link_to 'Add New Student' , new_student_path %>
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>DOB</th>
+      <th>Gender</th>
+      <th>Roll No</th>
+      <th>Class</th>
+      <th>Email</th>
+      <th colspan="2">Actions</th>
+    </tr>
+
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= link_to student.name, [student.school, student] %></td>
+        <td><%= student.birth_date %></td>
+        <td><%= student.gender %></td>
+        <td><%= student.roll_no %></td>
+        <td><%= student.standard %></td>
+        <td><%= student.email %></td>
+        <td><%= link_to 'Edit', edit_school_student_path(student.school, student) %></td>
+        <td><%= link_to 'Remove student', [student.school, student],
+                method: :delete,
+                data: { confirm: 'Do you want to delete this student?'} %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= link_to 'Back', schools_path %>

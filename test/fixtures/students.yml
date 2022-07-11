@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  birth_date: 2022-07-05
+  roll_no: 1
+  standard: 1
+  parents_contact: 1
+  gender: MyString
+
+two:
+  name: MyString
+  birth_date: 2022-07-05
+  roll_no: 1
+  standard: 1
+  parents_contact: 1
+  gender: MyString

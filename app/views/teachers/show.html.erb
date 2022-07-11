@@ -1,0 +1,33 @@
+<p>
+<strong>Teacher:</strong>
+<%= @teacher.name %>
+</p>
+
+<p>
+<strong>DOB:</strong>
+<%= @teacher.birth_date %>
+</p>
+
+<p>
+<strong>Gender:</strong>
+<%= @teacher.gender %>
+</p>
+
+<p>
+<strong>Email:</strong>
+<%= @teacher.email %>
+</p>
+
+<p>
+<strong>Subject:</strong>
+<%= @teacher.subject %>
+</p>
+
+<p>
+<strong>School ID:</strong>
+<%= @teacher.school_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_school_teacher_path(@teacher) %> |
+<%= link_to 'Back', school_teachers_path %>

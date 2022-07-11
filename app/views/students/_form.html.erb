@@ -1,0 +1,53 @@
+
+<%# <%= form_with(model: [ @school, @school.students.build ], local: true) do |form| %>
+ 
+<%= form_with model: @student, url: school_students_path, local: true do |form| %>
+  <% if @student.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@student.errors.count, "error") %> prohibited
+        this student from being saved:
+      </h2>
+      <ul>
+        <% @student.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <p>
+    <%= form.label :Name %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :DOB %><br>
+    <%= form.text_field :birth_date %>
+  </p>
+
+  <p>
+    <%= form.label :Gender %><br>
+    <%= form.text_field :gender %>
+  </p>
+
+  <p>
+    <%= form.label :Roll_no %><br>
+    <%= form.text_field :roll_no %>
+  </p>
+
+  <p>
+    <%= form.label :Class %><br>
+    <%= form.text_field :standard %>
+  </p>
+ 
+ <p>
+    <%= form.label :Email %><br>
+    <%= form.text_field :email %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+ 
+<% end %>

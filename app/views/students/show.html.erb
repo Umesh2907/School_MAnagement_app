@@ -1,0 +1,38 @@
+<p>
+<strong>Student:</strong>
+<%= @student.name %>
+</p>
+
+<p>
+<strong>DOB:</strong>
+<%= @student.birth_date %>
+</p>
+
+<p>
+<strong>Gender:</strong>
+<%= @student.gender %>
+</p>
+
+<p>
+<strong>Roll No:</strong>
+<%= @student.roll_no %>
+</p>
+
+<p>
+<strong>Class:</strong>
+<%= @student.standard %>
+</p>
+
+<p>
+<strong>Email:</strong>
+<%= @student.email %>
+</p>
+
+<p>
+<strong>School ID:</strong>
+<%= @student.school_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_school_student_path(@student) %> |
+<%= link_to 'Back', school_students_path %>

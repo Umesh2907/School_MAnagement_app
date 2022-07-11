@@ -1,0 +1,28 @@
+  <h1>Teachers list</h1>
+
+  <%# <%= link_to 'Add New Teacher' , new_teacher_path %>
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>DOB</th>
+      <th>Gender</th>
+      <th>Email</th>
+      <th>Subject</th>
+      <th colspan="2">Actions</th>
+    </tr>
+
+    <% @teachers.each do |teacher| %>
+      <tr>
+        <td><%= link_to teacher.name, [teacher.school, teacher] %></td>
+        <td><%= teacher.birth_date %></td>
+        <td><%= teacher.gender %></td>
+        <td><%= teacher.email %></td>
+        <td><%= teacher.subject %></td>
+        <td><%= link_to 'Edit',edit_school_teacher_path(teacher.school, teacher) %></td>
+        <td><%= link_to 'Remove teacher', [teacher.school, teacher],
+                method: :delete,
+                data: { confirm: 'Do you want to delete this teacher?'} %></td>
+      </tr>
+    <% end %>
+  </table>

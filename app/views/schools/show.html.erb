@@ -1,0 +1,38 @@
+<p>
+<strong>School:</strong>
+<%= @school.school_name %>
+</p>
+
+<p>
+<strong>Description:</strong>
+<%= @school.description %>
+</p>
+
+
+<p>
+<strong>Address:</strong>
+<%= @school.address %>
+</p>
+
+<p>
+<strong>Classes:</strong>
+<%= @school.classes %>
+</p>
+
+<p>
+<strong>Number of teachers:</strong>
+<%= @school.teachers.count %><br/>
+<%= link_to 'Add New Teacher' , new_school_teacher_path(@school) %><br/>
+<%= link_to 'Total Teachers', school_teachers_path(@school) %>
+</p>
+
+<p>
+<strong>Number of Students:</strong>
+<%= @school.students.count %><br/>
+<%= link_to 'Add New Student' , new_school_student_path(@school) %><br/>
+<%= link_to 'Total Student' , school_students_path(@school) %>
+</p>
+
+
+<%= link_to 'Edit', edit_school_path(@school) %> |
+<%= link_to 'Back', schools_path %>
