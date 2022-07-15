@@ -1,6 +1,11 @@
 class TeachersController < ApplicationController
+  before_action :set_school, except: [:show]
+
   def index
-    @teachers = Teacher.all
+    respond_to do |format|
+      format.html
+      format.json { render json: TeacherDatatable.new(params, view_context: view_context) }
+    end
   end
 
   def show
@@ -8,53 +13,41 @@ class TeachersController < ApplicationController
   end
   
   def new
-    set_school
     @teacher = @school.teachers.new
   end
 
   def edit
-    set_school
-    @teacher = @school.teachers.find(params[:id])
+    @teacher = @school.teachers.find_by(id: params[:id])
   end
 
   def create
-    set_school
     @teacher = @school.teachers.create(teacher_params)
 
     redirect_to school_path(@school)
-    # @teacher = Teacher.new(teacher_params)
-
-    # if @teacher.save(teacher_params)
-    #   redirect_to @teacher
-    # else
-    #   render 'new'
-    # end
   end
 
   def update
-    @teacher = Teacher.find(params[:id])
+    @teacher = @school.teachers.find(params[:id])
 
     if @teacher.update(teacher_params)
-      redirect_to @teacher
+      redirect_to school_teachers_path
     else
       render 'edit'
     end
   end
 
   def destroy
-    set_school
     @teacher = @school.teachers.find(params[:id])
     @teacher.destroy
-
     redirect_to school_path(@school)
   end
 
   private
   def set_school
-    @school = School.find_by(params[:id])
+    @school = School.find_by(id: params[:school_id])
   end
 
   def teacher_params
-    params.require(:teacher).permit(:name, :birth_date, :gender, :email, :subject, :school_id)
+    params.require(:teacher).permit(:name, :birth_date, :gender, :email, :subject)
   end
 end

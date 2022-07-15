@@ -1,6 +1,10 @@
 class SchoolsController < ApplicationController
   def index
     @schools = School.all
+      respond_to do |format|
+        format.html
+        format.json { render json: SchoolDatatable.new(params, view_context: view_context) }
+      end
   end
 
   def show

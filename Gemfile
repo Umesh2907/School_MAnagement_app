@@ -64,3 +64,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 
 gem 'avatar', '~> 0.2.0'
+
+gem 'ajax-datatables-rails'
+gem 'jquery-datatables'
+gem 'jquery-rails'
+
+gem "letter_opener", group: :development

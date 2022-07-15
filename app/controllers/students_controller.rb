@@ -1,6 +1,11 @@
 class StudentsController < ApplicationController
+  before_action :set_school, except: [:show]
+
   def index
-    @students = Student.all
+    respond_to do |format|
+      format.html
+      format.json { render json: StudentDatatable.new(params, view_context: view_context) }
+    end
   end
 
   def show
@@ -8,32 +13,21 @@ class StudentsController < ApplicationController
   end
   
   def new
-    set_school
     @student = @school.students.new
   end
 
   def edit
-    set_school
     @student = @school.students.find(params[:id])
-    # @student = Student.find(params[:id])
   end
 
   def create
-    # @school = School.find(params[:id])
-    set_school
     @student = @school.students.create(student_params)
 
     redirect_to school_path(@school)
-    # if @student.save(student_params)
-    #   redirect_to @student
-    # else
-    #   render 'new'
-    # end
   end
 
   def update
-    set_school
-    @student = @school.student.find(params[:id])
+    @student = @school.students.find(params[:id])
 
     if @student.update(student_params)
       redirect_to school_students_path
@@ -43,17 +37,9 @@ class StudentsController < ApplicationController
   end
 
   def destroy
-    # @school = School.find(params[:school_id])
-    set_school
     @student = @school.students.find(params[:id])
     @student.destroy
     redirect_to school_path(@school)
-
-
-    # @student = Student.find(params[:id])
-    # @student.destroy
-
-    # redirect_to school_students_path
   end
 
   private
@@ -62,7 +48,7 @@ class StudentsController < ApplicationController
   end
 
   def set_school
-    @school = School.find_by(params[:id])
+    @school = School.find_by(id: params[:school_id])
   end
   def student_params
     params.require(:student).permit(:name, :birth_date, :gender, :roll_no, :standard, :email)

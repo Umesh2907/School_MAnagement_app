@@ -1,7 +1,4 @@
-
-<%# <%= form_with(model: [ @school, @school.students.build ], local: true) do |form| %>
- 
-<%= form_with model: @student, url: school_students_path, local: true do |form| %>
+<%= form_for @student, url: [@school, @student], local: true do |form| %>
   <% if @student.errors.any? %>
     <div id="error_explanation">
       <h2>

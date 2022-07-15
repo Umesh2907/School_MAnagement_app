@@ -1,32 +1,40 @@
-  <h1>Students list</h1>
+<h1>Students list</h1>
 
-  <%# <%= link_to 'Add New Student' , new_student_path %>
+<%# <%= link_to 'Add New Student' , new_student_path %>
 
-  <table>
+<table id="students-datatable" data-source="<%= school_students_path(format: :json) %>">
+  <thead>
     <tr>
       <th>Name</th>
-      <th>DOB</th>
+      <th>Dob</th>
       <th>Gender</th>
-      <th>Roll No</th>
-      <th>Class</th>
+      <th>Roll no</th>
+      <th>Standard</th>
       <th>Email</th>
-      <th colspan="2">Actions</th>
     </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<script>
+  jQuery(document).ready(function() {
+    $('#students-datatable').dataTable({
+    "processing": true,
+    "serverSide": true,
+    "ajax": {
+      "url": $('#students-datatable').data('source')
+    },
+    "pagingType": "full_numbers",
+    "columns": [
+      {"data": "name"},
+      {"data": "birth_date"},
+      {"data": "gender"},
+      {"data": "roll_no"},
+      {"data": "standard"},
+      {"data": "email"},
+    ]
+    });
+});
+</script>
 
-    <% @students.each do |student| %>
-      <tr>
-        <td><%= link_to student.name, [student.school, student] %></td>
-        <td><%= student.birth_date %></td>
-        <td><%= student.gender %></td>
-        <td><%= student.roll_no %></td>
-        <td><%= student.standard %></td>
-        <td><%= student.email %></td>
-        <td><%= link_to 'Edit', edit_school_student_path(student.school, student) %></td>
-        <td><%= link_to 'Remove student', [student.school, student],
-                method: :delete,
-                data: { confirm: 'Do you want to delete this student?'} %></td>
-      </tr>
-    <% end %>
-  </table>
-
-  <%= link_to 'Back', schools_path %>
+<%= link_to 'Back' , school_url(@school) %>

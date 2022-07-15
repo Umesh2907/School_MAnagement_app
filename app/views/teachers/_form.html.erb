@@ -1,10 +1,4 @@
-
-<%#= form_with model: @teacher, local: true do |form| %>
-
-<%#= form_with(model: [ @school, @school.teachers.build ], local: true) do |form| %>
-<%= form_with model: @teacher, url: school_teachers_path, local: true do |form| %>
-
-
+<%= form_for @teacher, url: [@school, @teacher], local: true do |form| %>
   <% if @teacher.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -43,11 +37,6 @@
     <%= form.label :Subject %><br>
     <%= form.text_field :subject %>
   </p>
-  
-  <%# <p> %>
-    <%# <%= form.label :School_id %>
-    <%# <%= form.text_field :school_id %>
-  <%# </p> %>
 
   <p>
     <%= form.submit %>
