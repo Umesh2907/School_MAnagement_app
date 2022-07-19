@@ -24,7 +24,7 @@ class StudentDatatable < AjaxDatatablesRails::ActiveRecord
   def data
     records.map do |record|
       {
-        name:       link_to(record.name, school_student_path(record)),
+        name:       record.name,
         birth_date: record.birth_date,
         gender:     record.gender,
         roll_no:    record.roll_no,
