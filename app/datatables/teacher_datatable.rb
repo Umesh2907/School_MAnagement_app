@@ -25,7 +25,7 @@ class TeacherDatatable < AjaxDatatablesRails::ActiveRecord
     records.map do |record|
       {
         id:          record.id,
-        name:        record.name,
+        name:        link_to(record.name, "/schools/#{record.school_id}/teachers/#{record.id}"),
         birth_date:  record.birth_date,
         gender:      record.gender,
         email:       record.email,

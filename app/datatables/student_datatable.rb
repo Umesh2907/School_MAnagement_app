@@ -1,7 +1,7 @@
 class StudentDatatable < AjaxDatatablesRails::ActiveRecord
   extend Forwardable
 
-  def_delegators :@view, :link_to, :school_student_path
+  def_delegators :@view, :link_to
 
   def initialize(params, opts = {})
     @view = opts[:view_context]
@@ -26,7 +26,7 @@ class StudentDatatable < AjaxDatatablesRails::ActiveRecord
     records.map do |record|
       {
         id:         record.id,
-        name:       record.name,
+        name:       link_to(record.name, "/schools/#{record.school_id}/students/#{record.id}"),
         birth_date: record.birth_date,
         gender:     record.gender,
         roll_no:    record.roll_no,
