@@ -42,6 +42,9 @@
     <%= form.label :Email %><br>
     <%= form.text_field :email %>
   </p>
+  <%= link_to 'Destroy', school_student_path(@school),
+              method: :delete,
+              data: { confirm: 'Are you sure?'} %></td>
 
   <p>
     <%= form.submit %>

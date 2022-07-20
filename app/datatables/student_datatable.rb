@@ -12,6 +12,7 @@ class StudentDatatable < AjaxDatatablesRails::ActiveRecord
     # Declare strings in this format: ModelName.column_name
     # or in aliased_join_table.column_name format
     @view_columns ||= {
+      id:         { source: "Student.id"},
       name:       { source: "Student.name" },
       birth_date: { source: "Student.birth_date" },
       gender:     { source: "Student.gender" },
@@ -24,6 +25,7 @@ class StudentDatatable < AjaxDatatablesRails::ActiveRecord
   def data
     records.map do |record|
       {
+        id:         record.id,
         name:       record.name,
         birth_date: record.birth_date,
         gender:     record.gender,

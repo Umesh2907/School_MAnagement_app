@@ -17,7 +17,7 @@ class TeachersController < ApplicationController
   end
 
   def edit
-    @teacher = @school.teachers.find_by(id: params[:id])
+    @teacher = @school.teachers.find(params[:id])
   end
 
   def create

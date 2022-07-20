@@ -70,3 +70,5 @@ gem 'jquery-datatables'
 gem 'jquery-rails'
 
 gem "letter_opener", group: :development
+
+gem "chartkick"

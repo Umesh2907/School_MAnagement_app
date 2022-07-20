@@ -3,6 +3,7 @@
 <table id="students-datatable" data-source="<%= school_students_path(format: :json) %>">
   <thead>
     <tr>
+      <th>ID</th>
       <th>Name</th>
       <th>Dob</th>
       <th>Gender</th>
@@ -24,6 +25,7 @@
     },
     "pagingType": "full_numbers",
     "columns": [
+      {"data": "id"},
       {"data": "name"},
       {"data": "birth_date"},
       {"data": "gender"},
