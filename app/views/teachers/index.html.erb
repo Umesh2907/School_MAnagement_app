@@ -2,6 +2,7 @@
 
   <%# <%= link_to 'Add New Teacher' , new_teacher_path %>
 
+  <%= link_to 'Export CSV', school_teachers_path(format: "csv"), class:'btn btn-primary' %><br/>
   <table id="teachers-datatable" data-source="<%= school_teachers_path(format: :json) %>">
   <thead>
     <tr>

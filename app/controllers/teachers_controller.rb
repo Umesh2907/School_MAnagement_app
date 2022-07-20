@@ -2,9 +2,11 @@ class TeachersController < ApplicationController
   before_action :set_school, except: [:show]
 
   def index
+    @teachers = @school.teachers.all
     respond_to do |format|
       format.html
       format.json { render json: TeacherDatatable.new(params, view_context: view_context) }
+      format.csv { send_data @teachers.to_csv(['name', 'birth_date', 'gender', 'email', 'subject']) }
     end
   end
 

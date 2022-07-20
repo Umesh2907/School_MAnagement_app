@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'users#index'
-  resources :users
+  resources :users do 
+    collection{ post :import }
+  end
   
   resources :schools do
-    resources :students
+    collection{ post :import }
+    resources :students 
     resources :teachers
   end
 

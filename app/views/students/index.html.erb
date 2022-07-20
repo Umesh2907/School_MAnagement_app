@@ -1,5 +1,5 @@
 <h1>Students list</h1>
-
+<%= link_to 'Export CSV', school_students_path(format: "csv"), class:'btn btn-primary' %><br/>
 <table id="students-datatable" data-source="<%= school_students_path(format: :json) %>">
   <thead>
     <tr>

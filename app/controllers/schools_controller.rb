@@ -4,8 +4,14 @@ class SchoolsController < ApplicationController
       respond_to do |format|
         format.html
         format.json { render json: SchoolDatatable.new(params, view_context: view_context) }
+        format.csv { send_data @schools.to_csv(['school_name', 'description', 'address', 'classes']) }
       end
   end
+
+  def import
+    School.import(params[:file])
+    redirect_to root_url, notice: "School imported."
+ end
 
   def show
     @school = School.find(params[:id])
