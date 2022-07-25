@@ -15,8 +15,7 @@ class School < ApplicationRecord
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       school_hash = row.to_hash
-      school = find_or_create_by!(school_name: school_hash['school_name'], description: school_hash['description'], address: school_hash['address'], classes: school_hash['classes'])
-      school.update_attributes(school_hash)
+      school = create(school_name: school_hash['school_name'], description: school_hash['description'], address: school_hash['address'], classes: school_hash['classes'])
     end    
   end
 end

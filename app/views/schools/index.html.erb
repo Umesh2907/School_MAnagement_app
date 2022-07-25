@@ -1,10 +1,10 @@
 <%= form_tag import_schools_path, multipart: true, class: 'form-inline' do %>
-  <div class="form-group">
+  <div class="form-group mb-3">
     <%= link_to 'Export CSV', schools_path(format: "csv"), class:'btn btn-primary' %>
   </div>
 
-  <div class="form-group">
-    <%= file_field_tag :file, class:'' %>
+  <div class="form-group mb-3">
+    <%= file_field_tag :file, class:'btn btn-success' %>
   </div>
 
   <div class="form-group">

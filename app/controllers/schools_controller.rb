@@ -10,7 +10,7 @@ class SchoolsController < ApplicationController
 
   def import
     School.import(params[:file])
-    redirect_to root_url, notice: "School imported."
+    redirect_to schools_path, notice: "School imported."
  end
 
   def show

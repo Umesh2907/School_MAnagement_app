@@ -9,8 +9,6 @@ class StudentDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   def view_columns
-    # Declare strings in this format: ModelName.column_name
-    # or in aliased_join_table.column_name format
     @view_columns ||= {
       id:         { source: "Student.id"},
       name:       { source: "Student.name" },
@@ -37,7 +35,6 @@ class StudentDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   def get_raw_records
-    # insert query here
     @school = School.find_by(id: params[:school_id])
     @students = @school.students.all
   end
