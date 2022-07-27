@@ -1,5 +1,5 @@
 class TeachersController < ApplicationController
-  before_action :set_school, except: [:show]
+  before_action :set_school
 
   def index
     @teachers = @school.teachers.all
@@ -24,6 +24,7 @@ class TeachersController < ApplicationController
 
   def create
     @teacher = @school.teachers.create(teacher_params)
+    CrudNotificationMailer.create_notification(@teacher).deliver_now
 
     redirect_to school_path(@school)
   end
@@ -31,7 +32,9 @@ class TeachersController < ApplicationController
   def update
     @teacher = @school.teachers.find(params[:id])
 
+
     if @teacher.update(teacher_params)
+      CrudNotificationMailer.update_notification(@teacher).deliver_now
       redirect_to school_teachers_path
     else
       render 'edit'
@@ -40,11 +43,13 @@ class TeachersController < ApplicationController
 
   def destroy
     @teacher = @school.teachers.find(params[:id])
+    CrudNotificationMailer.delete_notification(@teacher).deliver_now
     @teacher.destroy
     redirect_to school_path(@school)
   end
 
   private
+
   def set_school
     @school = School.find_by(id: params[:school_id])
   end
