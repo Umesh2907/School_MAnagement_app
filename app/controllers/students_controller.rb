@@ -24,9 +24,15 @@ class StudentsController < ApplicationController
 
   def create
     @student = @school.students.create(student_params)
-    CrudNotificationMailer.create_notification(@student).deliver_now
-
+    if @student.save
+    StudentJob.perform_later(@student.id)
+    flash[:success] = "Thank you for your registration! We'll get contact you soon!"
+    # CrudNotificationMailer.create_notification(@student).deliver_now
     redirect_to school_path(@school)
+    else 
+      flash.now[:error] = "Your registration form had some errors. Please check the form and resubmit."
+      render :new
+    end
   end
 
   def update
@@ -44,7 +50,7 @@ class StudentsController < ApplicationController
     @student = @school.students.find(params[:id])
     CrudNotificationMailer.delete_notification(@student).deliver_now
     @student.destroy
-    redirect_to school_path(@school)
+    redirect_to school_students_path(@school)
   end
 
   private

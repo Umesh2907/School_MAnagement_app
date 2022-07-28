@@ -1,5 +1,10 @@
 class CrudNotificationMailer < ApplicationMailer
 
+  def new_creation_mail(object)
+    @object = object
+    mail(to: @object.email, subject: "New #{object} is created!")
+  end
+
   def create_notification(object)
     @object = object
     @object_count = object.class.count
